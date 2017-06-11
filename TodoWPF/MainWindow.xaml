@@ -15,10 +15,23 @@
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="5"/>
-        <ListView ItemsSource="{Binding TaskCollection}" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
+        <ListView ItemsSource="{Binding TaskCollection}" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="140" Header="언제" DisplayMemberBinding="{Binding When}"/>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="0" VerticalAlignment="Center" IsChecked="{Binding Done}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <!--GridViewColumn Width="140" Header="언제" DisplayMemberBinding="{Binding When}"/-->
                     <GridViewColumn Width="250" Header="내용" DisplayMemberBinding="{Binding What}"/>
                 </GridView>
             </ListView.View>
